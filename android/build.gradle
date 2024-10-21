@@ -11,6 +11,16 @@ buildscript {
         targetSdkVersion = 33
         ndkVersion = "21.4.7075529"
     }
+    subprojects { subproject ->
+        afterEvaluate{
+            if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+                android {
+                    compileSdkVersion rootProject.ext.compileSdkVersion
+                    buildToolsVersion rootProject.ext.buildToolsVersion
+                }
+            }
+        }
+    }
     repositories {
         google()
         mavenCentral()

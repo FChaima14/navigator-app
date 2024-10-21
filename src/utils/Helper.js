@@ -310,6 +310,7 @@ export default class HelperUtil {
      */
     static deepGet(object, path, defaultValue = null) {
         let current = object;
+        console.log("deepGet", object, "path",path)
 
         const type = typeof object;
         const isObject = type === 'object';
@@ -322,8 +323,10 @@ export default class HelperUtil {
         const pathArray = pathIsDotted ? path.split('.') : [path];
 
         if (isArray || isObject) {
+            console.log("ISARRRRA")
             for (let i = 0; i < pathArray.length; i++) {
                 if (current && current[pathArray[i]] === undefined) {
+                    console.log("hello")
                     return null;
                 } else if (current) {
                     current = current[pathArray[i]];
@@ -501,8 +504,8 @@ export default class HelperUtil {
         console.log('Using socketcluster config', socketConnectionConfig);
 
         // Create socket connection
-        const socket = socketClusterClient.create(socketConnectionConfig);
-
+       //const socket = socketClusterClient.create(socketConnectionConfig);
+        //console.log("socket", socket)
         // Handle socket connection errors
         const handleSocketErrors = async () => {
             const errorIterator = socket.listener('error')[Symbol.asyncIterator]();

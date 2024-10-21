@@ -106,6 +106,7 @@ const App: () => Node = () => {
     };
 
     const parseDeepLinkUrl = useCallback(url => {
+        console.log("url", url)
         const urlParts = url.split('?');
         if (urlParts.length > 1) {
             const path = String(urlParts[0]).replace(/^[^:]+:\/\//, '');
