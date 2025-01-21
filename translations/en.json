@@ -32,7 +32,9 @@
             "createAccountButtonText": "or Create Account",
             "retryButtonText": "Retry?",
             "verifyCodeButtonText": "Verify Code",
-            "codeInputPlaceholder": "Enter verification code"
+            "codeInputPlaceholder": "Enter verification code",
+            "EnterYourPassword" : "Enter your Password",
+            "Login" : "Login"
         },
         "SignUpScreen": {
             "driver": "Become Driver",

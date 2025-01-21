@@ -109,12 +109,12 @@ const MainScreen = ({ navigation, route }) => {
     useEffect(() => {
         const notifiableEvents = ['order.ready', 'order.ping', 'order.driver_assigned', 'order.dispatched'];
 
-        listenForOrdersFromSocket(`driver.${driver?.id}`, (order, event) => {
+        /*listenForOrdersFromSocket(`driver.${driver?.id}`, (order, event) => {
             if (typeof event === 'string' && notifiableEvents.includes(event)) {
                 let localNotificationObject = createNewOrderLocalNotificationObject(order, driver);
                 PushNotification.localNotification(localNotificationObject);
             }
-        });
+        });*/
     }, []);
 
     return (

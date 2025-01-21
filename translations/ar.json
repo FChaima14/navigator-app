@@ -54,7 +54,9 @@
             "createAccountButtonText": "أو إنشاء حساب؟",
             "retryButtonText": "هل تريد إعادة المحاولة؟",
             "verifyCodeButtonText": "كود التأكيد",
-            "codeInputPlaceholder": "ادخل كود التأكيد"
+            "codeInputPlaceholder": "ادخل كود التأكيد",
+            "EnterYourPassword" : "أدخل كلمة المرور",
+            "Login": "تسجيل الدخول"
         }
     },
     "Browser": {

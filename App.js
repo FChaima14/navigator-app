@@ -144,10 +144,12 @@ const App: () => Node = () => {
     });
 
     useEffect(() => {
+        console.log("Url")
         const setupInstanceLink = ({ url }) => {
             console.log('setupInstanceLink() #url', url);
 
             const parsedParams = parseDeepLinkUrl(url);
+            console.log('parsedParams', parsedParams);
 
             if (parsedParams !== null) {
                 const { key, host, socketcluster_host, socketcluster_port } = parsedParams;

@@ -45,7 +45,7 @@ const ChatScreen = ({ route }) => {
         if (!channel) return;
 
         console.log(`[Connecting to socket on channel chat.${channel.id}]`);
-        createSocketAndListen(`chat.${channel.id}`, socketEvent => {
+       /*createSocketAndListen(`chat.${channel.id}`, socketEvent => {
             console.log('Socket event: ', socketEvent, typeof socketEvent);
             const { event, data } = socketEvent;
             console.log('Socket event: ', event, data);
@@ -61,7 +61,7 @@ const ChatScreen = ({ route }) => {
                     reloadChannel(channel?.id);
                     break;
             }
-        });
+        });*/
     }, [isMounted]);
 
     const parseMessages = messages => {

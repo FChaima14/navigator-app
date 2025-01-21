@@ -37,7 +37,7 @@ const LoginScreen = ({ navigation, route }) => {
     const isNotAwaitingVerification = isAwaitingVerification === false;
     const redirectTo = deepGet(route, 'params?.redirectTo', 'MainStack');
 
-    console.log('FLEETBASE SDK OPTIONS', fleetbase.options);
+    console.log('FLEETBASE SDK OPTIONS', fleetbase);
 
     const sendVerificationCode = useCallback(() => {
         setIsLoading(true);
@@ -46,11 +46,13 @@ const LoginScreen = ({ navigation, route }) => {
             return fleetbase.drivers
                 .login(phone)
                 .then(response => {
+                    console.log("response", response)
                     setIsAwaitingVerification(true);
                     setError(null);
                     setIsLoading(false);
                 })
                 .catch(error => {
+                    console.log("error", error)
                     logError(error);
                     setIsLoading(false);
                     Toast.show({
@@ -74,8 +76,9 @@ const LoginScreen = ({ navigation, route }) => {
         setIsLoading(true);
 
         return fleetbase.drivers
-            .verifyCode(phone, code)
+            .login(phone,code)
             .then(driver => {
+                console.log("driver", driver)
                 setDriver(driver);
                 syncDevice(driver);
                 setIsLoading(false);
@@ -88,6 +91,7 @@ const LoginScreen = ({ navigation, route }) => {
             })
             .catch(error => {
                 logError(error);
+                console.log("error", error)
                 Toast.show({
                     type: 'error',
                     text1: '😅 Authentication Failed',
@@ -112,10 +116,10 @@ const LoginScreen = ({ navigation, route }) => {
                 <View style={tailwind('flex-grow')}>
                     <Pressable onPress={Keyboard.dismiss} style={[tailwind('px-5 -mt-28'), config('ui.loginScreen.contentContainerStyle')]}>
                         <KeyboardAvoidingView style={tailwind('')} behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={100}>
-                            <View style={tailwind('mb-10 flex items-center justify-center rounded-full')}>
+                            <View style={tailwind('mb-10 flex items-center justify-center')}>
                                 <FastImage
                                     source={_BRANDING_LOGO ? { uri: _BRANDING_LOGO } : _LOGO ? { uri: _LOGO } : require('../../../../assets/icon.png')}
-                                    style={tailwind('w-20 h-20 rounded-full')}
+                                    style={tailwind('w-20 h-20')}
                                 />
                             </View>
                             {isNotAwaitingVerification && (
@@ -129,11 +133,20 @@ const LoginScreen = ({ navigation, route }) => {
                                             {...(config('ui.createAccountScreen.phoneInputProps') ?? {})}
                                         />
                                     </View>
-                                    <TouchableOpacity style={tailwind('mb-2')} onPress={sendVerificationCode}>
+                                    <TextInput
+                                            onChangeText={setCode}
+                                            autoFocus={true}
+                                            textAlign={'center'}
+                                            placeholder={translate('Auth.LoginScreen.EnterYourPassword')}
+                                            placeholderTextColor={'rgba(156, 163, 175, 1)'}
+                                            style={[tailwind('form-input flex flex-row text-gray-100 text-center mb-2.5')]}
+                    
+                                        />
+                                    <TouchableOpacity style={tailwind('mb-2')} onPress={verifyCode}>
                                         <View style={[tailwind('btn bg-gray-900 border border-gray-700'), config('ui.loginScreen.sendVerificationCodeButtonStyle')]}>
                                             {isLoading && <ActivityIndicator size={'small'} color={getColorCode('text-blue-500')} style={tailwind('mr-2')} />}
                                             <Text style={[tailwind('font-semibold text-gray-50 text-lg text-center'), config('ui.loginScreen.sendVerificationCodeButtonTextStyle')]}>
-                                                {translate('Auth.LoginScreen.sendVerificationCodeButtonText')}
+                                                {translate('Auth.LoginScreen.Login')}
                                             </Text>
                                         </View>
                                     </TouchableOpacity>

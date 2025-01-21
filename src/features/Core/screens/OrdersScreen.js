@@ -149,7 +149,7 @@ const OrdersScreen = ({ navigation }) => {
     }, [isMounted]);
 
     // Listen for new orders via Socket Connection
-    useEffect(() => {
+   /* useEffect(() => {
         listenForOrdersFromSocket(`driver.${driver?.id}`, (order, event) => {
             console.log('[socket event]', event);
             if (typeof event === 'string' && event === 'order.ready') {
@@ -163,7 +163,7 @@ const OrdersScreen = ({ navigation }) => {
                 }
             }
         });
-    }, []);
+    }, []);*/
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {

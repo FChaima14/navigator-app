@@ -541,10 +541,11 @@ export default class HelperUtil {
             // Create channel from channel id
             const channel = socket.subscribe(channelId);
 
-            console.log('Channel subscribed!');
+            console.log('Channel subscribed!', channel);
 
             // Await subscription confirmation
             console.log('Awaiting subscription confirmation...');
+            console.log('Channel listener', channel.listener('subscribe').once());
             await channel.listener('subscribe').once();
             console.log('Subscription confirmed!');
 

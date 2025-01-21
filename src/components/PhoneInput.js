@@ -82,7 +82,7 @@ const PhoneInput = ({
                     <Text style={tailwind('text-gray-900')}>{countryCode}</Text>
                 </TouchableOpacity>
                 <TextInput
-                    style={[tailwind('h-12 px-2 w-full rounded-md')]}
+                    style={[tailwind('h-12 px-2 w-full rounded-md text-black')]}
                     value={value}
                     onChangeText={text => {
                         if (typeof onChangePhone === 'function') {
@@ -119,6 +119,13 @@ const PhoneInput = ({
                     },
                     textInput: {
                         paddingLeft: 15,
+                        color: "#000"
+                    },
+                    countryName: {
+                        color: "#000"
+                    },
+                    dialCode: {
+                       color: "#000"
                     },
                 }}
             />
